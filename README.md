@@ -43,6 +43,19 @@ python3 code/main.py
 
 After running your solution, confirm that `output.csv` exists in the repository root and contains the required columns and one row for every request.
 
+### Running the complete pipeline
+
+The complete entry point is `code/main.py`. Copy `.env.example` to `.env`, fill in the three NVIDIA settings, then run it from the repository root:
+
+```powershell
+$env:API_KEY = "your-key"
+$env:BASE_URL = "https://your-nvidia-endpoint/v1/chat/completions"
+$env:MODEL = "your-model-id"
+python3 code/main.py
+```
+
+`API_KEY`, `BASE_URL`, and `MODEL` are required; there are no hardcoded fallbacks. The pipeline validates all rows before writing the root-level `output.csv`; it also writes token accounting to `evaluation/usage_report.md`. Never commit API keys.
+
 ## Important File Locations
 
 ```text
